@@ -7,7 +7,31 @@
   
   Each constructor function has unique properties and methods that are defined in their block comments below:
 */
-  
+  function GameObject (gameObjectAttributes) {
+    this.createdAt = gameObjectAttributes.createdAt;
+    this.name =gameObjectAttributes.name;
+    this.dimensions = gameObjectAttributes.name;
+  }
+
+GameObject.prototype.destroy = function (){
+  console.log(`${this.name} was removed from the game`);
+
+}
+  function CharacterStats (characterStatsAttributes) {
+    this.healthpoints
+    this.takeDamage
+    this.should inherit destroy 
+  }
+
+  function Humanoid (humanoidAttributes){
+    this.team = humanoidAttributes.team;
+    this.weapons = humanoidAttributes.team;
+    this.language = humanoidAttributes.team;
+    this.should inherit destroy
+    this.should inherit take damage
+  }
+
+  GameObject.protoype
 /*
   === GameObject ===
   * createdAt
@@ -41,7 +65,7 @@
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
-/*
+
   const mage = new Humanoid({
     createdAt: new Date(),
     dimensions: {
@@ -102,7 +126,7 @@
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
-*/
+
 
   // Stretch task: 
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
