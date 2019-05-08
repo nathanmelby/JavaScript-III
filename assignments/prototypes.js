@@ -7,38 +7,44 @@
   
   Each constructor function has unique properties and methods that are defined in their block comments below:
 */
-  function GameObject (gameObjectAttributes) {
-    this.createdAt = gameObjectAttributes.createdAt;
-    this.name =gameObjectAttributes.name;
-    this.dimensions = gameObjectAttributes.name;
+  function GameObject(attributes) {
+    this.createdAt = attributes.createdAt;
+    this.name = attributes.name;
+    this.dimensions = attributes.dimensions;
   }
 
 GameObject.prototype.destroy = function (){
-  console.log(`${this.name} was removed from the game`);
+  return (`${this.name} was removed from the game`);
 
 }
-  function CharacterStats (characterStatsAttributes) {
+  function CharacterStats(characterStatsAttributes) {
     GameObject.call (this, characterStatsAttributes);
-    this.healthpoints
+    this.healthPoints = characterStatsAttributes.healthPoints;
     
   }
 
+CharacterStats.prototype = Object.create(GameObject.prototype);
+
 CharacterStats.prototype.takeDamage = function (){
-    console.log(`<object name> took damage`);
+    return (`${this.name} took damage`);
 }
 
 
-  function Humanoid (humanoidAttributes){
+  function Humanoid(humanoidAttributes) {
     CharacterStats.call (this, humanoidAttributes);
     this.team = humanoidAttributes.team;
-    this.weapons = humanoidAttributes.team;
-    this.language = humanoidAttributes.team;
+    this.weapons = humanoidAttributes.weapons;
+    this.language = humanoidAttributes.language;
   }
 
 
+
+Humanoid.prototype = Object.create(CharacterStats.prototype);
+
 Humanoid.prototype.greet = function (){
-  console.log(`<object name> offers a greeting in <object language>`);
+  return (`${this.name} offers a greeting in ${this.language}`);
 }
+
 /*
   === GameObject ===
   * createdAt
@@ -83,6 +89,7 @@ Humanoid.prototype.greet = function (){
     healthPoints: 5,
     name: 'Bruce',
     team: 'Mage Guild',
+    type: `Villian`
     weapons: [
       'Staff of Shamalama',
     ],
@@ -99,6 +106,7 @@ Humanoid.prototype.greet = function (){
     healthPoints: 15,
     name: 'Sir Mustachio',
     team: 'The Round Table',
+    type: `Hero`
     weapons: [
       'Giant Sword',
       'Shield',
@@ -116,6 +124,7 @@ Humanoid.prototype.greet = function (){
     healthPoints: 10,
     name: 'Lilith',
     team: 'Forest Kingdom',
+    type: `Villian`
     weapons: [
       'Bow',
       'Dagger',
