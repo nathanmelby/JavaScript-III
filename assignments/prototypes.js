@@ -18,20 +18,27 @@ GameObject.prototype.destroy = function (){
 
 }
   function CharacterStats (characterStatsAttributes) {
+    GameObject.call (this, characterStatsAttributes);
     this.healthpoints
-    this.takeDamage
-    this.should inherit destroy 
+    
   }
 
+CharacterStats.prototype.takeDamage = function (){
+    console.log(`<object name> took damage`);
+}
+
+
   function Humanoid (humanoidAttributes){
+    CharacterStats.call (this, humanoidAttributes);
     this.team = humanoidAttributes.team;
     this.weapons = humanoidAttributes.team;
     this.language = humanoidAttributes.team;
-    this.should inherit destroy
-    this.should inherit take damage
   }
 
-  GameObject.protoype
+
+Humanoid.prototype.greet = function (){
+  console.log(`<object name> offers a greeting in <object language>`);
+}
 /*
   === GameObject ===
   * createdAt
