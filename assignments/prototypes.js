@@ -45,6 +45,20 @@ Humanoid.prototype.greet = function (){
   return (`${this.name} offers a greeting in ${this.language}`);
 }
 
+function Hero(heroAttributes) {
+  Humanoid.call (this, heroAttributes);
+  this.type = 'Hero';
+}
+
+Hero.prototype = Object.create(Humanoid.prototype);
+
+function Villian(villianAttributes) {
+  Humanoid.call (this, villianAttributes)
+  this.type = 'Villian';
+}
+
+Villian.prototype = Object.create(Humanoid.prototype);
+
 /*
   === GameObject ===
   * createdAt
@@ -89,7 +103,6 @@ Humanoid.prototype.greet = function (){
     healthPoints: 5,
     name: 'Bruce',
     team: 'Mage Guild',
-    type: `Villian`
     weapons: [
       'Staff of Shamalama',
     ],
@@ -106,7 +119,6 @@ Humanoid.prototype.greet = function (){
     healthPoints: 15,
     name: 'Sir Mustachio',
     team: 'The Round Table',
-    type: `Hero`
     weapons: [
       'Giant Sword',
       'Shield',
@@ -124,7 +136,58 @@ Humanoid.prototype.greet = function (){
     healthPoints: 10,
     name: 'Lilith',
     team: 'Forest Kingdom',
-    type: `Villian`
+    weapons: [
+      'Bow',
+      'Dagger',
+    ],
+    language: 'Elvish',
+  });
+
+
+  const evilArcher = new Villian({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 10,
+    name: 'Lilith',
+    team: 'Forest Kingdom',
+    weapons: [
+      'Bow',
+      'Dagger',
+    ],
+    language: 'Elvish',
+  });
+
+  const evilMage = new Villian({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 10,
+    name: 'Lilith',
+    team: 'Forest Kingdom',
+    weapons: [
+      'Bow',
+      'Dagger',
+    ],
+    language: 'Elvish',
+  });
+
+  const heroSwordsman = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 10,
+    name: 'Lilith',
+    team: 'Forest Kingdom',
     weapons: [
       'Bow',
       'Dagger',
@@ -142,6 +205,7 @@ Humanoid.prototype.greet = function (){
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
+  console.log(evilArcher.type);
 
 
   // Stretch task: 
