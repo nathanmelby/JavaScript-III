@@ -59,6 +59,11 @@ function Villian(villianAttributes) {
 
 Villian.prototype = Object.create(Humanoid.prototype);
 
+
+Villian.prototype.leech =function(character) {
+  return `${character.healthpoints} leeched your life-source! You have ${{character.healthpoints -+4}} health points remaining!`
+};
+
 /*
   === GameObject ===
   * createdAt
