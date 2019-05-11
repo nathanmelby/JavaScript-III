@@ -7,7 +7,63 @@
   
   Each constructor function has unique properties and methods that are defined in their block comments below:
 */
-  
+  function GameObject(attributes) {
+    this.createdAt = attributes.createdAt;
+    this.name = attributes.name;
+    this.dimensions = attributes.dimensions;
+  }
+
+GameObject.prototype.destroy = function (){
+  return (`${this.name} was removed from the game`);
+
+}
+  function CharacterStats(characterStatsAttributes) {
+    GameObject.call (this, characterStatsAttributes);
+    this.healthPoints = characterStatsAttributes.healthPoints;
+    
+  }
+
+CharacterStats.prototype = Object.create(GameObject.prototype);
+
+CharacterStats.prototype.takeDamage = function (){
+    return (`${this.name} took damage`);
+}
+
+
+  function Humanoid(humanoidAttributes) {
+    CharacterStats.call (this, humanoidAttributes);
+    this.team = humanoidAttributes.team;
+    this.weapons = humanoidAttributes.weapons;
+    this.language = humanoidAttributes.language;
+  }
+
+
+
+Humanoid.prototype = Object.create(CharacterStats.prototype);
+
+Humanoid.prototype.greet = function (){
+  return (`${this.name} offers a greeting in ${this.language}`);
+}
+
+function Hero(heroAttributes) {
+  Humanoid.call (this, heroAttributes);
+  this.type = 'Hero';
+}
+
+Hero.prototype = Object.create(Humanoid.prototype);
+
+function Villian(villianAttributes) {
+  Humanoid.call (this, villianAttributes)
+  this.type = 'Villian';
+}
+
+Villian.prototype = Object.create(Humanoid.prototype);
+
+
+Villian.prototype.leech =function(character) {
+  return `${character.healthpoints} leeched your life-source! You have ${{character.healthpoints -+4}} health points remaining!`
+};
+
 /*
   === GameObject ===
   * createdAt
@@ -41,7 +97,7 @@
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
-/*
+
   const mage = new Humanoid({
     createdAt: new Date(),
     dimensions: {
@@ -92,6 +148,58 @@
     language: 'Elvish',
   });
 
+
+  const evilArcher = new Villian({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 10,
+    name: 'Lilith',
+    team: 'Forest Kingdom',
+    weapons: [
+      'Bow',
+      'Dagger',
+    ],
+    language: 'Elvish',
+  });
+
+  const evilMage = new Villian({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 10,
+    name: 'Lilith',
+    team: 'Forest Kingdom',
+    weapons: [
+      'Bow',
+      'Dagger',
+    ],
+    language: 'Elvish',
+  });
+
+  const heroSwordsman = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: 10,
+    name: 'Lilith',
+    team: 'Forest Kingdom',
+    weapons: [
+      'Bow',
+      'Dagger',
+    ],
+    language: 'Elvish',
+  });
+
   console.log(mage.createdAt); // Today's date
   console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
   console.log(swordsman.healthPoints); // 15
@@ -102,7 +210,8 @@
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
-*/
+  console.log(evilArcher.type);
+
 
   // Stretch task: 
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
